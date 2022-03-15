@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class BCode implements Serializable {
 
-    private int bcode;
+    private Box bCode;
 
     @Override
     public int hashCode() {
