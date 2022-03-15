@@ -7,12 +7,12 @@ public class BCode implements Serializable {
     private int bcode;
 
     @Override
-    public boolean equals(Object o){
-
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override
-    public int hashCode(){
-
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
