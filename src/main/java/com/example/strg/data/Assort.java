@@ -1,6 +1,7 @@
 package com.example.strg.data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,12 +13,12 @@ public class Assort {
 
     private String aName;
 
-    @ManyToOne
-    @JoinColumn(name = "aCode", referencedColumnName = "highACode")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "aCode", referencedColumnName = "aCode", insertable = false, updatable = false)
     private Assort parent;
 
-    @OneToMany(mappedBy = "parent")
-    private List<Assort> children;
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    private List<Assort> children = new ArrayList<>();
 
     public Assort() {
     }

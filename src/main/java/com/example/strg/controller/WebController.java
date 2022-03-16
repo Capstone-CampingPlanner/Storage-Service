@@ -10,11 +10,11 @@ public class WebController {
         return "index";
     }
 
-//    //관리자 보관함 메인
-//    @GetMapping("/a")
-//    public String adminStrgMain(){
-//        return "";
-//    }
+    //관리자 보관함 메인
+    @GetMapping("admin/")
+    public String adminStrgMain(){
+        return "adminStrg";
+    }
 //
 //    //관리자 보관함 보관소 등록 / 수정
 //    @GetMapping("/a")
