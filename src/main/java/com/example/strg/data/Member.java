@@ -1,9 +1,8 @@
 package com.example.strg.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "MEMBER")
@@ -20,7 +19,21 @@ public class Member { // 사용자
     @Column(length = 50)
     private String mPsw;
 
+    @ManyToMany
+    @JoinTable(name = "DEPMANAGER",
+            joinColumns = @JoinColumn(name = "mCode"),
+            inverseJoinColumns = @JoinColumn(name = "dCode"))
+    private List<Depository> depositorys = new ArrayList<Depository>();
+
     public Member() {
+    }
+
+    public Member(int mCode, int mId, String mName, String mPsw, List<Depository> depositorys) {
+        this.mCode = mCode;
+        this.mId = mId;
+        this.mName = mName;
+        this.mPsw = mPsw;
+        this.depositorys = depositorys;
     }
 
     public Member(int mCode, int mId, String mName, String mPsw) {
@@ -60,5 +73,13 @@ public class Member { // 사용자
 
     public void setmPsw(String mPsw) {
         this.mPsw = mPsw;
+    }
+
+    public List<Depository> getDepositorys() {
+        return depositorys;
+    }
+
+    public void setDepositorys(List<Depository> depositorys) {
+        this.depositorys = depositorys;
     }
 }

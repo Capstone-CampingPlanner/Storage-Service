@@ -1,9 +1,7 @@
 package com.example.strg.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="DEPOSITORY")
@@ -19,6 +17,9 @@ public class Depository {  // 보관소
 
     private String dAddress;
 
+    @ManyToMany(mappedBy = "depositorys")
+    private List<Member> members;
+
     public Depository() {
     }
 
@@ -27,6 +28,14 @@ public class Depository {  // 보관소
         this.dName = dName;
         this.zipCode = zipCode;
         this.dAddress = dAddress;
+    }
+
+    public Depository(int dCode, String dName, String zipCode, String dAddress, List<Member> members) {
+        this.dCode = dCode;
+        this.dName = dName;
+        this.zipCode = zipCode;
+        this.dAddress = dAddress;
+        this.members = members;
     }
 
     public int getdCode() {
@@ -59,5 +68,13 @@ public class Depository {  // 보관소
 
     public void setdAddress(String dAddress) {
         this.dAddress = dAddress;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }

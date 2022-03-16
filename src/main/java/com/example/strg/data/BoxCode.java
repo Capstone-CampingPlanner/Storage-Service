@@ -3,22 +3,21 @@ package com.example.strg.data;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class BCode implements Serializable {
-
+public class BoxCode implements Serializable {
     private int bCode;
-    private int mCode;
+    private int dCode;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BCode bCode1 = (BCode) o;
-        return bCode == bCode1.bCode && mCode == bCode1.mCode;
+        BoxCode boxCode = (BoxCode) o;
+        return bCode == boxCode.bCode && dCode == boxCode.dCode;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bCode, mCode);
+        return Objects.hash(bCode, dCode);
     }
 
     public int getbCode() {
@@ -29,19 +28,19 @@ public class BCode implements Serializable {
         this.bCode = bCode;
     }
 
-    public int getmCode() {
-        return mCode;
+    public int getdCode() {
+        return dCode;
     }
 
-    public void setmCode(int mCode) {
-        this.mCode = mCode;
+    public void setdCode(int dCode) {
+        this.dCode = dCode;
     }
 
-    public BCode() {
+    public BoxCode() {
     }
 
-    public BCode(int bCode, int mCode) {
+    public BoxCode(int bCode, int dCode) {
         this.bCode = bCode;
-        this.mCode = mCode;
+        this.dCode = dCode;
     }
 }

@@ -3,7 +3,7 @@ package com.example.strg.data;
 import javax.persistence.*;
 
 @Entity
-@IdClass(BCode.class)
+@IdClass(BoxCode.class)
 @Table(name = "BOX")
 public class Box {
 
@@ -22,6 +22,13 @@ public class Box {
     private String bState;
 
     public Box() {
+    }
+
+    public Box(int bCode, String bName, String bType, String bState) {
+        this.bCode = bCode;
+        this.bName = bName;
+        this.bType = bType;
+        this.bState = bState;
     }
 
     public Box(int bCode, Depository dCode, String bName, String bType, String bState) {
