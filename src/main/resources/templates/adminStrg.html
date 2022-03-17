@@ -5,8 +5,51 @@
     <title>관리자 메인 페이지</title>
 </head>
 <body>
-    <h1>보관소 추가하기</h1>
+<h1>보관소 추가하기</h1>
+<input type="text" id="dName">
+<input type="text" id="zipCode">
+<input type="text" id="dAddress">
+<button type="submit" id="addDep"></button>
 
+<script>
+    $(function () {
+        $('#addDep').click((event) => {
+            const dName = $('#dName').val();
+            const zipCode = $('#zipCode').val();
+            const dAddress = $('#dAddress').val();
 
+            const path = 'api/addDep'
+            const json = {
+                'dName': dName,
+                'zipCode': zipCode,
+                'dAddress': dAddress
+            }
+
+            $.ajax({
+                url: path,
+                type: 'POST',
+                contentType: 'application/json',
+                data: json
+            })
+            .done((response) => {
+                if (response.result == 'ok') {
+                    alert('등록되었습니다.');
+                    window.location.href = '/addmenu'
+                    console.log(1);
+                } else {
+                    alert('등록되지 않았습니다.');
+                    console.log(2);
+
+                }
+            })
+            .fail((response) => {
+                alert('(에러)등록되지 않았습니다.');
+                console.log(3);
+
+            })
+
+        })
+    }
+</script>
 </body>
 </html>

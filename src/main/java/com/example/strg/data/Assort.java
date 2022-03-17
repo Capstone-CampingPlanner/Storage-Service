@@ -14,20 +14,20 @@ public class Assort {
     private String aName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aCode", referencedColumnName = "aCode", insertable = false, updatable = false)
+    @JoinColumn(name = "aCode", insertable = false, updatable = false)
     private Assort parent;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    private List<Assort> children = new ArrayList<>();
+    private List<Assort> highCode = new ArrayList<>();
 
     public Assort() {
     }
 
-    public Assort(String aCode, String aName, Assort parent, List<Assort> children) {
+    public Assort(String aCode, String aName, Assort parent, List<Assort> highCode) {
         this.aCode = aCode;
         this.aName = aName;
         this.parent = parent;
-        this.children = children;
+        this.highCode = highCode;
     }
 
     public String getaCode() {
@@ -54,11 +54,11 @@ public class Assort {
         this.parent = parent;
     }
 
-    public List<Assort> getChildren() {
-        return children;
+    public List<Assort> getHighCode() {
+        return highCode;
     }
 
-    public void setChildren(List<Assort> children) {
-        this.children = children;
+    public void setHighCode(List<Assort> highCode) {
+        this.highCode = highCode;
     }
 }
