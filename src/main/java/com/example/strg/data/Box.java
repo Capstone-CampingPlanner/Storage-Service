@@ -12,8 +12,8 @@ public class Box {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "dCode")
-    private Depository dCode;
+    @JoinColumn(name = "sCode")
+    private Storage sCode;
 
     private String bName;
 
@@ -31,9 +31,9 @@ public class Box {
         this.bState = bState;
     }
 
-    public Box(int bCode, Depository dCode, String bName, String bType, String bState) {
+    public Box(int bCode, Storage dCode, String bName, String bType, String bState) {
         this.bCode = bCode;
-        this.dCode = dCode;
+        this.sCode = dCode;
         this.bName = bName;
         this.bType = bType;
         this.bState = bState;
@@ -47,12 +47,12 @@ public class Box {
         this.bCode = bCode;
     }
 
-    public Depository getdCode() {
-        return dCode;
+    public Storage getsCode() {
+        return sCode;
     }
 
-    public void setdCode(Depository dCode) {
-        this.dCode = dCode;
+    public void setsCode(Storage sCode) {
+        this.sCode = sCode;
     }
 
     public String getbName() {

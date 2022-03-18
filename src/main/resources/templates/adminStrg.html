@@ -6,23 +6,25 @@
 </head>
 <body>
 <h1>보관소 추가하기</h1>
-<input type="text" id="dName">
-<input type="text" id="zipCode">
-<input type="text" id="dAddress">
-<button type="submit" id="addDep"></button>
+<input type="text" id="sName" placeholder="보관소이름">
+<input type="text" id="zipCode" placeholder="보관소 우편번호">
+<input type="text" id="sAddress" placeholder="보관소 주소">
+<button type="submit" id="addStrg"></button>
 
 <script>
     $(function () {
-        $('#addDep').click((event) => {
-            const dName = $('#dName').val();
+        $('#addStrg').click((event) => {
+            const sCode = "as";
+            const sName = $('#sName').val();
             const zipCode = $('#zipCode').val();
-            const dAddress = $('#dAddress').val();
+            const sAddress = $('#sAddress').val();
 
-            const path = 'api/addDep'
+            const path = 'api/addStrg'
             const json = {
-                'dName': dName,
+                'sCode':sCode,
+                'sName': sName,
                 'zipCode': zipCode,
-                'dAddress': dAddress
+                'sAddress': sAddress
             }
 
             $.ajax({
@@ -49,7 +51,7 @@
             })
 
         })
-    }
+    });
 </script>
 </body>
 </html>

@@ -5,19 +5,19 @@ import java.util.Objects;
 
 public class BoxCode implements Serializable {
     private int bCode;
-    private int dCode;
+    private String sCode;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoxCode boxCode = (BoxCode) o;
-        return bCode == boxCode.bCode && dCode == boxCode.dCode;
+        return sCode == boxCode.sCode && sCode == boxCode.sCode;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bCode, dCode);
+        return Objects.hash(bCode, sCode);
     }
 
     public int getbCode() {
@@ -28,19 +28,19 @@ public class BoxCode implements Serializable {
         this.bCode = bCode;
     }
 
-    public int getdCode() {
-        return dCode;
+    public String getdCode() {
+        return sCode;
     }
 
-    public void setdCode(int dCode) {
-        this.dCode = dCode;
+    public void setdCode(String sCode) {
+        this.sCode = sCode;
     }
 
     public BoxCode() {
     }
 
-    public BoxCode(int bCode, int dCode) {
+    public BoxCode(int bCode, String sCode) {
         this.bCode = bCode;
-        this.dCode = dCode;
+        this.sCode = sCode;
     }
 }

@@ -20,20 +20,20 @@ public class Member { // 사용자
     private String mPsw;
 
     @ManyToMany
-    @JoinTable(name = "DEPMANAGER",
+    @JoinTable(name = "STRGMANAGER",
             joinColumns = @JoinColumn(name = "mCode"),
-            inverseJoinColumns = @JoinColumn(name = "dCode"))
-    private List<Depository> depositorys = new ArrayList<Depository>();
+            inverseJoinColumns = @JoinColumn(name = "sCode"))
+    private List<Storage> storages = new ArrayList<Storage>();
 
     public Member() {
     }
 
-    public Member(int mCode, int mId, String mName, String mPsw, List<Depository> depositorys) {
+    public Member(int mCode, int mId, String mName, String mPsw, List<Storage> storages) {
         this.mCode = mCode;
         this.mId = mId;
         this.mName = mName;
         this.mPsw = mPsw;
-        this.depositorys = depositorys;
+        this.storages = storages;
     }
 
     public Member(int mCode, int mId, String mName, String mPsw) {
@@ -75,11 +75,11 @@ public class Member { // 사용자
         this.mPsw = mPsw;
     }
 
-    public List<Depository> getDepositorys() {
-        return depositorys;
+    public List<Storage> getDepositorys() {
+        return storages;
     }
 
-    public void setDepositorys(List<Depository> depositorys) {
-        this.depositorys = depositorys;
+    public void setDepositorys(List<Storage> storages) {
+        this.storages = storages;
     }
 }
