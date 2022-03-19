@@ -1,15 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>메인서비스 입니다</h1>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import storageService from "@/components/storageService";
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    storageService
+
   }
 }
 </script>

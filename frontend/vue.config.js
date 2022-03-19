@@ -8,8 +8,8 @@ module.exports = {
   devServer :{
     proxy:{
       '/api':{
-        // 'api'로 들어오면 포트 8787(스프링서버)
-        target: 'http://localhost:8787',
+        // 'api'로 들어오면 포트 8484(스프링서버)
+        target: 'http://localhost:8484',
         changeOrigin: true // cross origin
       }
     }
