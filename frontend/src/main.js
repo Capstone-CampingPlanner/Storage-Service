@@ -5,7 +5,7 @@ import views from './views'
 
 createApp().config.productionTip = false
 const app = create
-+App(App)
+App(App)
 
 app.use(views);
 app.use(router);
