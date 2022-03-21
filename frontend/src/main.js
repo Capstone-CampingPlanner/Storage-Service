@@ -1,4 +1,12 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
+import router from './router'
+import views from './views'
 
-createApp(App).mount('#app')
+createApp().config.productionTip = false
+const app = create
++App(App)
+
+app.use(views);
+app.use(router);
+app.mount('#app')

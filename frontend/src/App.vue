@@ -1,17 +1,15 @@
 <template>
   <h1>메인서비스 입니다</h1>
+  <storage-vue></storage-vue>
+  <router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import storageService from "@/components/storageService";
-
-
+import StorageVue from "@/views/storageVue";
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    storageService
+    StorageVue
 
   }
 }
