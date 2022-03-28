@@ -1,85 +1,63 @@
 package com.example.strg.data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "MEMBER")
 public class Member { // 사용자
 
     @Id
-    private int mCode;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long memberCode;
 
     @Column(length = 50)
-    private int mId;
-    @Column(length = 50)
-    private String mName;
+    private String memberId;
 
     @Column(length = 50)
-    private String mPsw;
+    private String memberName;
 
-    @ManyToMany
-    @JoinTable(name = "STRGMANAGER",
-            joinColumns = @JoinColumn(name = "mCode"),
-            inverseJoinColumns = @JoinColumn(name = "sCode"))
-    private List<Storage> storages = new ArrayList<Storage>();
+    @Column(length = 50)
+    private String memberPassword;
 
     public Member() {
     }
 
-    public Member(int mCode, int mId, String mName, String mPsw, List<Storage> storages) {
-        this.mCode = mCode;
-        this.mId = mId;
-        this.mName = mName;
-        this.mPsw = mPsw;
-        this.storages = storages;
+    public Member(long memberCode, String memberId, String memberName, String memberPassword) {
+        this.memberCode = memberCode;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.memberPassword = memberPassword;
     }
 
-    public Member(int mCode, int mId, String mName, String mPsw) {
-        this.mCode = mCode;
-        this.mId = mId;
-        this.mName = mName;
-        this.mPsw = mPsw;
+    public long getMemberCode() {
+        return memberCode;
     }
 
-    public int getmCode() {
-        return mCode;
+    public void setMemberCode(long memberCode) {
+        this.memberCode = memberCode;
     }
 
-    public void setmCode(int mCode) {
-        this.mCode = mCode;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public int getmId() {
-        return mId;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public String getmName() {
-        return mName;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public String getMemberPassword() {
+        return memberPassword;
     }
 
-    public String getmPsw() {
-        return mPsw;
-    }
-
-    public void setmPsw(String mPsw) {
-        this.mPsw = mPsw;
-    }
-
-    public List<Storage> getDepositorys() {
-        return storages;
-    }
-
-    public void setDepositorys(List<Storage> storages) {
-        this.storages = storages;
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
     }
 }

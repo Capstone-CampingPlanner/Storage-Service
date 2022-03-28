@@ -6,6 +6,7 @@ import com.example.strg.repository.StorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,9 +16,9 @@ public class ApiController {
     @Autowired
     private StorageRepository storageRepository;
 
-    @PostMapping("/addStrg")
-    public Result addDep(@RequestBody Storage storage){
-        Optional<Storage> findStrg = storageRepository.findById(storage.getsCode());
+    @PostMapping("/postStorage")
+    public Result postStorage(@RequestBody Storage storage){
+        Optional<Storage> findStrg = storageRepository.findById(storage.getStorageCode());
         if(findStrg.isPresent()){
             return new Result("no");
         }else{
@@ -26,9 +27,11 @@ public class ApiController {
         return new Result("ok");
     }
 
-    @GetMapping("/asdf")
-    public String asdf(){
-        return "asdf";
+    @GetMapping("/getStorages")
+    public List<Storage> getStorages(){
+        List<Storage> storageList = storageRepository.findAll();
+
+        return storageList;
     }
 
 
