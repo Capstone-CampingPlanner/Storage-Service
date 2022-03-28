@@ -1,7 +1,7 @@
 <template>
   <h1>메인서비스 입니다</h1>
-  <storage-vue></storage-vue>
-  <router-view />
+  <StorageVue></StorageVue>
+
 </template>
 
 <script>
