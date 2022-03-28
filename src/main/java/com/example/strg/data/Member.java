@@ -9,77 +9,63 @@ import java.util.List;
 public class Member { // 사용자
 
     @Id
-    private int mCode;
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //int.autoincrement
+    private int member_code;
 
     @Column(length = 50)
-    private int mId;
-    @Column(length = 50)
-    private String mName;
+    private int member_id;
 
     @Column(length = 50)
-    private String mPsw;
+    private String member_name;
+
+    @Column(length = 50)
+    private String member_password;
 
     @ManyToMany
-    @JoinTable(name = "STRGMANAGER",
-            joinColumns = @JoinColumn(name = "mCode"),
-            inverseJoinColumns = @JoinColumn(name = "sCode"))
+    @JoinTable(name = "STORAGEMANAGER",
+            joinColumns = @JoinColumn(name = "member_code"),
+            inverseJoinColumns = @JoinColumn(name = "storage_code"))
     private List<Storage> storages = new ArrayList<Storage>();
 
     public Member() {
     }
 
-    public Member(int mCode, int mId, String mName, String mPsw, List<Storage> storages) {
-        this.mCode = mCode;
-        this.mId = mId;
-        this.mName = mName;
-        this.mPsw = mPsw;
-        this.storages = storages;
+    public Member(int member_code, int member_id, String member_name, String member_password) {
+        this.member_code = member_code;
+        this.member_id = member_id;
+        this.member_name = member_name;
+        this.member_password = member_password;
     }
 
-    public Member(int mCode, int mId, String mName, String mPsw) {
-        this.mCode = mCode;
-        this.mId = mId;
-        this.mName = mName;
-        this.mPsw = mPsw;
+    public int getMember_code() {
+        return member_code;
     }
 
-    public int getmCode() {
-        return mCode;
+    public void setMember_code(int member_code) {
+        this.member_code = member_code;
     }
 
-    public void setmCode(int mCode) {
-        this.mCode = mCode;
+    public int getMember_id() {
+        return member_id;
     }
 
-    public int getmId() {
-        return mId;
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public String getMember_name() {
+        return member_name;
     }
 
-    public String getmName() {
-        return mName;
+    public void setMember_name(String member_name) {
+        this.member_name = member_name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public String getMember_password() {
+        return member_password;
     }
 
-    public String getmPsw() {
-        return mPsw;
-    }
-
-    public void setmPsw(String mPsw) {
-        this.mPsw = mPsw;
-    }
-
-    public List<Storage> getDepositorys() {
-        return storages;
-    }
-
-    public void setDepositorys(List<Storage> storages) {
-        this.storages = storages;
+    public void setMember_password(String member_password) {
+        this.member_password = member_password;
     }
 }

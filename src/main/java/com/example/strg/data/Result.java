@@ -1,11 +1,18 @@
 package com.example.strg.data;
 
 public class Result {
-    public String result;
-    public Result() {
-    }
+
+    private String result;
 
     public Result(String result) {
+        this.result = result;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
         this.result = result;
     }
 }

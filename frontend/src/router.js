@@ -1,12 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
-
-import storageVue from "@/views/storageVue";
+import StorageMenagementView from "@/components/StorageMenagementView";
 
 const routes = [
     {
         path: "/",
-        name: "Home",
-        component: storageVue
+        name: "StorageMenagementView",
+        component: StorageMenagementView
     }
 ];
 

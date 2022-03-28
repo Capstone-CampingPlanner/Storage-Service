@@ -3,8 +3,13 @@
 </template>
 
 <script>
+
 export default {
-  name: "StorageRevise"
+  name: "StorageRevise",
+  components: {
+
+  }
+
 }
 </script>
 

@@ -8,14 +8,17 @@ import java.util.List;
 public class Storage {  // 보관소
 
     @Id
-    private String sCode;
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //int.autoincrement
+    private int storage_code;
 
     @Column(length = 50)
-    private String sName;
+    private String storage_name;
 
-    private String zipCode;
+    @Column(length = 50)
+    private String storage_zipcode;
 
-    private String sAddress;
+    @Column(length = 50)
+    private String storage_address;
 
     @ManyToMany(mappedBy = "storages")
     private List<Member> members;
@@ -23,43 +26,43 @@ public class Storage {  // 보관소
     public Storage() {
     }
 
-    public Storage(String sCode, String sName, String zipCode, String dAddress) {
-        this.sCode = sCode;
-        this.sName = sName;
-        this.zipCode = zipCode;
-        this.sAddress = dAddress;
+    public Storage(int storage_code, String storage_name, String storage_zipcode, String storage_address) {
+        this.storage_code = storage_code;
+        this.storage_name = storage_name;
+        this.storage_zipcode = storage_zipcode;
+        this.storage_address = storage_address;
     }
 
-    public String getsCode() {
-        return sCode;
+    public int getStorage_code() {
+        return storage_code;
     }
 
-    public void setsCode(String sCode) {
-        this.sCode = sCode;
+    public void setStorage_code(int storage_code) {
+        this.storage_code = storage_code;
     }
 
-    public String getsName() {
-        return sName;
+    public String getsStorage_name() {
+        return storage_name;
     }
 
-    public void setsName(String sName) {
-        this.sName = sName;
+    public void setsStorage_name(String sName) {
+        this.storage_name = sName;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getStorage_zipcode() {
+        return storage_zipcode;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setStorage_zipcode(String zipCode) {
+        this.storage_zipcode = zipCode;
     }
 
-    public String getsAddress() {
-        return sAddress;
+    public String getsStorage_address() {
+        return storage_address;
     }
 
-    public void setsAddress(String sAddress) {
-        this.sAddress = sAddress;
+    public void setsStorage_address(String sAddress) {
+        this.storage_address = sAddress;
     }
 
     public List<Member> getMembers() {

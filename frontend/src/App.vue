@@ -1,15 +1,14 @@
 <template>
   <h1>메인서비스 입니다</h1>
-  <StorageVue></StorageVue>
-
+  <StorageManagementView></StorageManagementView>
 </template>
 
 <script>
-import StorageVue from "@/views/storageVue";
+import StorageManagerView from "@/components/StorageManagerView";
 export default {
   name: 'App',
   components: {
-    StorageVue
+    StorageManagerView
 
   }
 }
