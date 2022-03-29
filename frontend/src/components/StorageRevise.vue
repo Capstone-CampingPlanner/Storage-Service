@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>revise</h1>
+  <h1>revise - 수정</h1>
 </div>
 </template>
 

@@ -21,6 +21,11 @@ public class StorageManager {
     public StorageManager() {
     }
 
+    public StorageManager(Member memberCode, Storage storageCode) {
+        this.memberCode = memberCode;
+        this.storageCode = storageCode;
+    }
+
     public StorageManager(long storageManagerCode, Member memberCode, Storage storageCode) {
         this.storageManagerCode = storageManagerCode;
         this.memberCode = memberCode;

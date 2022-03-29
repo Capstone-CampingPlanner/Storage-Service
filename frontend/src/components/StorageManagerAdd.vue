@@ -1,14 +1,11 @@
 <template>
   <div class="manager-add">
-<<<<<<< HEAD
-    <input type="text" v-model="form.manager_id"  placeholder="아이디">
-    <input type="text" v-model="form.storage_code" placeholder="보관소코드">
+    <input type="text" v-model="memberId" placeholder="매니저아이디">
+    <button @click="CheckMember()">CHECK</button>
+
+
+    <input type="text" v-model="storageName" placeholder="보관소명">
     <button @click="postManager()">ADD</button>
-=======
-    <input type="text" v-model="form.manager_id">
-    <input type="text" v-model="form.storage_code">
-    <button @click="postManager()"></button>
->>>>>>> dc19758fb0144b1b5929ccff6ae52ec37e618db4
   </div>
 </template>
 
@@ -19,31 +16,57 @@ export default {
   name: "StorageManagerAdd",
   data() {
     return {
-      form: {
-        manager_id: '',
-        storage_code: ''
-      },
+      memberId: '',
+      storageName: '',
       errorCheck: false
     }
   },
   methods: {
     inputCheck() {
-      if (!this.manager_id) {
+      if (!this.memberId) {
         alert('매니저를 입력하세요')
-      } else if (!this.storage_code) {
+      } else if (!this.storageName) {
         alert('보관소 입력하세요')
       } else {
         this.errorCheck = true
       }
     },
     clearInput() {
-      this.form.manager_id = ''
-      this.form.storage_code = ''
+      this.memberId = ''
+      this.storageName = ''
+    },
+    CheckMember(){
+      let rew ={};
+      if(!this.memberId){
+        alert('아이디를 입력하세요')
+      }else{
+        axios.post('api/checkManager',{memberId : this.memberId})
+        .then((res)=>{
+          console.log(res)
+          rew = res.data
+          console.log(rew.result)
+          if(rew.result =='ok') {
+            console.log('가능')
+            alert('가능합니다')
+          }else if(rew.result == 'overlap'){
+            console.log('불가능')
+            alert('불가능합니단')
+          }
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+      }
     },
     postManager() {
       this.inputCheck()
       if (this.errorCheck) {
-        axios.post('api/postManager', this.form)
+        axios.post('api/postManager',
+            {
+              memberId: this.memberId,
+              storageName: this.storageName
+              }
+            )
             .then((res) => {
               console.log(this.form)
               if (res === 'ok') {

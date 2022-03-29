@@ -1,16 +1,9 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <input type="text" v-model="form.storage_name" placeholder="보관소명">
-    <input type="text" v-model="form.storage_zipcode" placeholder="우편번호">
-    <input type="text" v-model="form.storage_address" placeholder="주소">
+    <input type="text" v-model="form.storageName" placeholder="보관소명">
+    <input type="text" v-model="form.storageZipcode" placeholder="우편번호">
+    <input type="text" v-model="form.storageAddress" placeholder="주소">
     <button @click="postStorage()">ADD</button>
-=======
-    <input type="text" v-model="form.storage_name">
-    <input type="text" v-model="form.storage_zipcode">
-    <input type="text" v-model="form.storage_address">
-    <button @click="postStorage()"></button>
->>>>>>> dc19758fb0144b1b5929ccff6ae52ec37e618db4
   </div>
 </template>
 
@@ -22,29 +15,29 @@ export default {
   data(){
     return{
       form:{
-        storage_name:'',
-        storage_zipcode:'',
-        storage_address:''
+        storageName:'',
+        storageZipcode:'',
+        storageAddress:''
       },
       errorCheck:false
     }
   },
   methods:{
     inputCheck(){
-      if(!this.form.storage_name){
+      if(!this.form.storageName){
         alert('보관소 명을 입력하세요')
-      }else if(!this.form.storage_zipcode){
+      }else if(!this.form.storageZipcode){
         alert('보관소 우편주소을 입력하세요')
-      }else if(!this.form.storage_address){
+      }else if(!this.form.storageAddress){
         alert('보관소 주소을 입력하세요')
       }else{
         this.errorCheck = true
       }
     },
     clearInput(){
-      this.storage_name = ''
-      this.storage_zipcode = ''
-      this.storage_address = ''
+      this.storageName = ''
+      this.storageZipcode = ''
+      this.storageAddress = ''
     },
 
     postStorage(){
