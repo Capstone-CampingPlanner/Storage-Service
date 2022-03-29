@@ -1,9 +1,16 @@
 <template>
   <div>
+<<<<<<< HEAD
     <input type="text" v-model="form.storage_name" placeholder="보관소명">
     <input type="text" v-model="form.storage_zipcode" placeholder="우편번호">
     <input type="text" v-model="form.storage_address" placeholder="주소">
     <button @click="postStorage()">ADD</button>
+=======
+    <input type="text" v-model="form.storage_name">
+    <input type="text" v-model="form.storage_zipcode">
+    <input type="text" v-model="form.storage_address">
+    <button @click="postStorage()"></button>
+>>>>>>> dc19758fb0144b1b5929ccff6ae52ec37e618db4
   </div>
 </template>
 

@@ -12,7 +12,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import StorageManagerAdd from "@/components/StorageManagerAdd.vue";
+=======
+import StorageManagerAdd from "@/components/StorageManagerAdd";
+>>>>>>> dc19758fb0144b1b5929ccff6ae52ec37e618db4
 
 export default {
   name: "StorageManagerView",

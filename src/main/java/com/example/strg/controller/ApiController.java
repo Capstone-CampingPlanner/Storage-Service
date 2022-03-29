@@ -18,7 +18,11 @@ public class ApiController {
 
     @PostMapping("/postStorage")
     public Result postStorage(@RequestBody Storage storage){
+<<<<<<< HEAD
         Optional<Storage> findStrg = storageRepository.findById(storage.getStorageCode());
+=======
+        Optional<Storage> findStrg = storageRepository.findById(storage.getStorage_code());
+>>>>>>> dc19758fb0144b1b5929ccff6ae52ec37e618db4
         if(findStrg.isPresent()){
             return new Result("no");
         }else{
