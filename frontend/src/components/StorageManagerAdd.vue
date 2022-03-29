@@ -1,14 +1,8 @@
 <template>
   <div class="manager-add">
-<<<<<<< HEAD
     <input type="text" v-model="form.manager_id"  placeholder="아이디">
     <input type="text" v-model="form.storage_code" placeholder="보관소코드">
     <button @click="postManager()">ADD</button>
-=======
-    <input type="text" v-model="form.manager_id">
-    <input type="text" v-model="form.storage_code">
-    <button @click="postManager()"></button>
->>>>>>> dc19758fb0144b1b5929ccff6ae52ec37e618db4
   </div>
 </template>
 
