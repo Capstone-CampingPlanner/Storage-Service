@@ -35,19 +35,20 @@ export default {
       }
     },
     clearInput(){
-      this.storageName = ''
-      this.storageZipcode = ''
-      this.storageAddress = ''
+      this.form.storageName = ''
+      this.form.storageZipcode = ''
+      this.form.storageAddress = ''
     },
-
     postStorage(){
       this.inputCheck()
       if(this.errorCheck){
         axios.post('api/postStorage', this.form)
             .then((res)=>{
               console.log(this.form)
-              if(res === 'ok'){
+              console.log(res.data.result)
+              if(res.data.result === 'ok'){
                 console.log('중복없음')
+                this.clearInput()
               }
               else{
                 console.log('중복')
@@ -55,9 +56,7 @@ export default {
             }).catch((err)=>{
           console.log(err)
         })
-        this.clearInput()
       }
-
     }
   }
 }

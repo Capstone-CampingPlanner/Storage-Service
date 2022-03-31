@@ -7,9 +7,9 @@
     </div>
     <div class="manager-get">
       <div v-for="(manager, index) in storageManagerList" :key="index">
-        보관소:{{manager.storageName}},
-        매니저이름:{{manager.storageManagerName}},
-        매니저아이디:{{manager.storageManagerId}}
+        보관소:{{manager.storageCode.storageName}},
+        매니저이름:{{manager.memberCode.memberName}},
+        매니저아이디:{{manager.memberCode.memberId}}
       </div>
     </div>
   </div>
@@ -26,12 +26,6 @@ export default {
   },
   data(){
     return{
-      count: [],
-      inputs:{
-        storageManagerName:'',
-        storageManagerId:'',
-        storageName:''
-      },
       storageManagerList:[]
     }
   },
@@ -43,20 +37,12 @@ export default {
       axios.get('/api/getStorageManger')
           .then((res) => {
             console.log(res)
-            this.count = res.data
-            for (var i; i , count.length; i++) {
-              this.inputs.storageManagerName = this.count[i].storageManagerName
-              this.inputs.storageManagerId = this.count[i].storageManagerName
-              this.inputs.storageName = this.count[i].storageName
-              this.storageManagerList.push(this.inputs)
-              this.ClearInputs()
-            }
+            this.storageManagerList = res.data
+
           })
-    },
-    ClearInputs(){
-      this.inputs.storageManagerName=''
-      this.inputs.storageManagerId=''
-      this.inputs.storageName=''
+          .catch((error)=>{
+            console.log(error)
+          })
     }
   }
 }

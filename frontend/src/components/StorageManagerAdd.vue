@@ -2,6 +2,7 @@
   <div class="manager-add">
     <input type="text" v-model="memberId" placeholder="매니저아이디">
     <button @click="CheckMember()">CHECK</button>
+    <p v-if="memberIdCheck">가능</p>
 
 
     <input type="text" v-model="storageName" placeholder="보관소명">
@@ -18,7 +19,8 @@ export default {
     return {
       memberId: '',
       storageName: '',
-      errorCheck: false
+      errorCheck: false,
+      memberIdCheck : false
     }
   },
   methods: {
@@ -36,26 +38,32 @@ export default {
       this.storageName = ''
     },
     CheckMember(){
-      let rew ={};
       if(!this.memberId){
         alert('아이디를 입력하세요')
       }else{
         axios.post('api/checkManager',{memberId : this.memberId})
         .then((res)=>{
           console.log(res)
-          rew = res.data
-          console.log(rew.result)
-          if(rew.result =='ok') {
+          if(res.data.result =='ok') {
             console.log('가능')
             alert('가능합니다')
-          }else if(rew.result == 'overlap'){
+            this.memberIdCheck = true
+          }else if(res.data.result == 'overlap'){
             console.log('불가능')
-            alert('불가능합니단')
+            alert('이미 있습니다')
+            this.memberIdCheck = false
           }
         })
         .catch((error)=>{
           console.log(error)
         })
+      }
+    },
+    CheckStorage(){
+      if(!this.storageName){
+        alert('보관소명을 입력하세요')
+      }else{
+        axios.post()
       }
     },
     postManager() {

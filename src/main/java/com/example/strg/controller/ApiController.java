@@ -29,11 +29,11 @@ public class ApiController {
     @PostMapping("/postStorage")
     public Result postStorage(@RequestBody Storage storage) {
 
-        Optional<Storage> findStrg = storageRepository.findById(storage.getStorageCode());
+        Optional<Storage> findStrg = storageRepository.findByStorageName(storage.getStorageName());
 
         System.out.println(storage.getStorageName());
 
-        if (findStrg.isPresent()) {
+        if (!findStrg.isPresent()) {
             storageRepository.save(storage);
             return new Result("ok");
         } else {
