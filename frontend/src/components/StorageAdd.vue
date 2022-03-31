@@ -47,6 +47,7 @@ export default {
               console.log(this.form)
               console.log(res.data.result)
               if(res.data.result === 'ok'){
+                alert('추가되었습니다')
                 console.log('중복없음')
                 this.clearInput()
               }

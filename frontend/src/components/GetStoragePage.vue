@@ -7,6 +7,7 @@
         주소:{{ storage.storageAddress }}
       </router-link>
     </div>
+    <router-link :to="{name:'storageAdd'}">추가하기</router-link>
   </div>
 </template>
 
