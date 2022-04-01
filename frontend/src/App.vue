@@ -5,7 +5,7 @@
 
 <script>
 
-import StorageService from "@/components/StorageService.vue";
+import StorageService from "@/views/StorageService.vue";
 export default {
   name: 'App',
   components: {

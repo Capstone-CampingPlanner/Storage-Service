@@ -2,9 +2,8 @@
 <template>
   <div class="storage-view-main">
     <p>여기에서 get, input, detail, revise 들이 페이지 전환</p>
+  <router-view />
 
-
-    <router-view></router-view>
   </div>
 </template>
 

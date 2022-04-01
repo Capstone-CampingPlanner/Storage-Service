@@ -42,7 +42,7 @@ export default {
     postStorage(){
       this.inputCheck()
       if(this.errorCheck){
-        axios.post('api/postStorage', this.form)
+        axios.post('/api/postStorage', this.form)
             .then((res)=>{
               console.log(this.form)
               console.log(res.data.result)

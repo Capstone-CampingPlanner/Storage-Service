@@ -2,12 +2,13 @@
   <p>보관소 리스트 페이지</p>
   <div class="storage-get">
     <div v-for="(storage,index) in storageList" :key="index">
-      <router-link :to="{name:'',params:{storageCode:storage.storageCode}}">
-        이름:{{ storage.storageName }}
-        주소:{{ storage.storageAddress }}
+      <router-link :to="{name:'detail',params:{storageCode:storage.storageCode}}">
+        <div>
+          이름:{{ storage.storageName }}
+          주소:{{ storage.storageAddress }}
+        </div>
       </router-link>
     </div>
-    <router-link :to="{name:'storageAdd'}">추가하기</router-link>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ import axios from "axios";
 export default {
   name: "GetStoragePage",
   mounted() {
-    this.GetStorages()
+    this.GetStorage()
   },
   data() {
     return {
@@ -25,8 +26,8 @@ export default {
     }
   },
   methods: {
-    GetStorages() {
-      axios.get('/api/getStorages')
+    GetStorage() {
+      axios.get('/api/getStorage')
           .then((res) => {
             console.log(res)
             console.log(res.data)

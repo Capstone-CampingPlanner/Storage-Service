@@ -1,26 +1,21 @@
 import {createWebHistory, createRouter} from "vue-router";
-import StorageManagementView from "@/components/StorageMenagementView.vue";
-import StorageService from "@/components/StorageService.vue";
-import StorageDetail from "@/components/StorageDetail.vue";
-import GetStoragePage from "@/components/GetStoragePage.vue";
-import StorageAdd from "@/components/StorageAdd.vue";
+import StorageAdd from "@/components/storageService/admin/StorageAdd.vue";
 import StorageRevise from "@/components/StorageRevise.vue";
+import StorageManagerAdd from "@/components/StorageManagerAdd.vue";
+import GetStorageManagerPage from "@/components/GetStorageManagerPage.vue";
+import UserStorageDetail from "@/components/storageService/user/UserStorageDetail.vue";
 
 const routes = [
     {
         path: "/",
         name: "home",
-        component: StorageService
+        component: ()=> import('@/views/StorageService.vue')
     },
     {
         path: "/storage",
         name: "storage",
         component: ()=> import('@/views/StorageView.vue'),
         children: [
-            {
-                path: '',
-                component: GetStoragePage
-            },
             {
                 path: 'revise',
                 component: StorageRevise
@@ -32,31 +27,33 @@ const routes = [
             }
         ]
     },
-    // {
-    //     path: "/get",
-    //     name:'getStorage',
-    //     component: GetStoragePage
-    // },
-    // {
-    //     path: "/add",
-    //     name: "addStorage",
-    //     component: storageAdd
-    // },
-    // {
-    //     path: "/revise",
-    //     name: "storageRevise",
-    //     component: storageRevise
-    // },
     {
         path: "/manager",
         name: "manager",
-        component: StorageManagementView
+        component: ()=> import('@/views/StorageManagerView'),
+        children: [
+            {
+              path: '',
+              component: GetStorageManagerPage
+            },
+            {
+                path: 'add',
+                component: StorageManagerAdd
+            }
+        ]
     },
     {
-        path: '/storage/:storageCode',
-        name: 'storageDetail',
-        component: StorageDetail
-    }
+        path: "/storageView",
+        component: ()=> import('@/views/user/UserStorageView'),
+        children: [
+            {
+                path: ':storageCode',
+                name:'detail',
+                component: UserStorageDetail
+            }
+        ]
+    },
+
 
 
 ];

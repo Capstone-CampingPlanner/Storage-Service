@@ -1,10 +1,8 @@
 package com.example.strg.controller;
 
-import com.example.strg.data.Member;
-import com.example.strg.data.Result;
-import com.example.strg.data.Storage;
-import com.example.strg.data.StorageManager;
+import com.example.strg.data.*;
 import com.example.strg.repository.MemberRepository;
+import com.example.strg.repository.StorageBoxRepository;
 import com.example.strg.repository.StorageManagerRepository;
 import com.example.strg.repository.StorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,9 @@ public class ApiController {
 
     @Autowired
     private StorageManagerRepository storageManagerRepository;
+
+    @Autowired
+    private StorageBoxRepository storageBoxRepository;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -78,14 +79,41 @@ public class ApiController {
         }
     }
 
-
-
-    @GetMapping("/getStorages")
+    @GetMapping("/getStorage")
     public List<Storage> getStorages() {
         List<Storage> storageList = storageRepository.findAll();
 
         return storageList;
     }
+
+    @GetMapping("/storageView/{storageCode}")
+    public List<StorageBox> getStorageDetail(@PathVariable(value = "storageCode") Long storageCode){
+        System.out.println(storageCode);
+        Optional<Storage> storage = storageRepository.findById(storageCode);
+        System.out.println("==========");
+        List<StorageBox> boxList = storageBoxRepository.findByStorageCode(storage.get());
+        System.out.println("==========");
+        if(boxList.size()!=0){
+            for (int i =0; i <boxList.size();i++ )
+                System.out.println(boxList.get(i).getStorageBoxName());
+
+        }
+        System.out.println("=-=-=-=--=-==-=-=");
+        System.out.println(boxList.get(0).getStorageCode().getStorageName());
+        // System.out.println(storage.get().getStorageBoxCode().get(0).getStorageBoxName());
+        return boxList;
+    }
+
+//    @GetMapping("/storageView/{storageCode}")
+//    public List<StorageBox> getStorageBox(@PathVariable(value = "storageCode") long storageCode){
+//        List<StorageBox> storageBoxList = storageBoxRepository.findByStorageCode(storageCode);
+//        System.out.println(storageBoxList.get(1).getStorageCode().getStorageName());
+//        System.out.println(storageBoxList.get(1).getStorageBoxName());
+//        return storageBoxList;
+//    }
+
+
+
 
     @GetMapping("/getStorageManger")
     public List<StorageManager> getStorageManger() {
@@ -93,6 +121,8 @@ public class ApiController {
 
         return managerList;
     }
+
+
 
 
 }

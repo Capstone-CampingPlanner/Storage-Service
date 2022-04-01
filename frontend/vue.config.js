@@ -11,6 +11,11 @@ module.exports = {
         // 'api'로 들어오면 포트 8484(스프링서버)
         target: 'http://localhost:8484',
         changeOrigin: true // cross origin
+      },
+      '/storage/api':{
+        // '/storage/api'로 들어오면 포트 8484(스프링서버)
+        target: 'http://localhost:8484',
+        changeOrigin: true // cross origin
       }
     }
   }
