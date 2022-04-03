@@ -27,6 +27,8 @@ public class UseStorageBox {
         this.orderCode = orderCode;
     }
 
+
+
     public long getUseStorageBoxCode() {
         return useStorageBoxCode;
     }

@@ -1,6 +1,7 @@
 package com.example.strg.data;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "STORAGEBOX")
@@ -26,6 +27,12 @@ public class StorageBox {
     public StorageBox() {
     }
 
+    public StorageBox(Storage storageCode, String storageBoxName, String storageBoxType, String storageBoxState) {
+        this.storageCode = storageCode;
+        this.storageBoxName = storageBoxName;
+        this.storageBoxType = storageBoxType;
+        this.storageBoxState = storageBoxState;
+    }
 
     public StorageBox(long storageBoxCode, Storage storageCode, String storageBoxName, String storageBoxType, String storageBoxState) {
         this.storageBoxCode = storageBoxCode;

@@ -5,6 +5,7 @@ import com.example.strg.repository.MemberRepository;
 import com.example.strg.repository.StorageBoxRepository;
 import com.example.strg.repository.StorageManagerRepository;
 import com.example.strg.repository.StorageRepository;
+import com.example.strg.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
+
+    @Autowired
+    StorageService storageService;
 
     @Autowired
     private StorageRepository storageRepository;
@@ -41,6 +45,52 @@ public class ApiController {
             return new Result("no");
         }
 
+    }
+
+    @PostMapping("/postBox")
+    public Result postBox(@RequestBody Box box){
+
+        Storage strg = storageService.findStorageName(box.getStorageName());
+
+        String storageBoxName;
+        String storageBoxType;
+        String storageBoxState;
+
+        for (int i = 0; i < box.getSmall(); i++) {
+            storageBoxName = "S"+(i+1);
+            storageBoxType = "0";
+            storageBoxState = "0";
+            StorageBox storageBoxSmall = new StorageBox(strg,storageBoxName,storageBoxType,storageBoxState);
+            storageBoxRepository.save(storageBoxSmall);
+
+            storageBoxName = "0";
+            storageBoxType = "0";
+            storageBoxState = "0";
+        }
+        for (int i = 0; i < box.getMedium(); i++) {
+            storageBoxName = "M"+(i+1);
+            storageBoxType = "0";
+            storageBoxState = "0";
+            StorageBox storageBoxSmall = new StorageBox(strg,storageBoxName,storageBoxType,storageBoxState);
+            storageBoxRepository.save(storageBoxSmall);
+
+            storageBoxName = "0";
+            storageBoxType = "0";
+            storageBoxState = "0";
+        }
+        for (int i = 0; i < box.getLarge(); i++) {
+            storageBoxName = "L"+(i+1);
+            storageBoxType = "0";
+            storageBoxState = "0";
+            StorageBox storageBoxSmall = new StorageBox(strg,storageBoxName,storageBoxType,storageBoxState);
+            storageBoxRepository.save(storageBoxSmall);
+
+            storageBoxName = "0";
+            storageBoxType = "0";
+            storageBoxState = "0";
+        }
+
+        return new Result("ok");
     }
 
     @PostMapping("/postManager")
@@ -82,7 +132,6 @@ public class ApiController {
     @GetMapping("/getStorage")
     public List<Storage> getStorages() {
         List<Storage> storageList = storageRepository.findAll();
-
         return storageList;
     }
 
@@ -103,17 +152,6 @@ public class ApiController {
         // System.out.println(storage.get().getStorageBoxCode().get(0).getStorageBoxName());
         return boxList;
     }
-
-//    @GetMapping("/storageView/{storageCode}")
-//    public List<StorageBox> getStorageBox(@PathVariable(value = "storageCode") long storageCode){
-//        List<StorageBox> storageBoxList = storageBoxRepository.findByStorageCode(storageCode);
-//        System.out.println(storageBoxList.get(1).getStorageCode().getStorageName());
-//        System.out.println(storageBoxList.get(1).getStorageBoxName());
-//        return storageBoxList;
-//    }
-
-
-
 
     @GetMapping("/getStorageManger")
     public List<StorageManager> getStorageManger() {
