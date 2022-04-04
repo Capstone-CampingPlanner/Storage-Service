@@ -1,3 +1,4 @@
+<!-- 현재 사용 안함-->
 <template>
   <div class="storage">
     보관소 이름:{{ name }}

@@ -7,6 +7,7 @@
   </div>
   <div class="storage-box">
     <p>보관함 추가</p>
+    <p>{{name}}</p>
     <div class="storage-box-add">
       <table>
         <tbody>
@@ -14,7 +15,7 @@
           <td>small</td>
           <td>medium</td>
           <td>large</td>
-          <td rowspan="2"><button @click="inputBox">ADD</button></td>
+          <td rowspan="2"><button @click="postBox">ADD</button></td>
         </tr>
         <tr>
           <td><button @click="subS">-</button>{{box.small}}<button @click="addS">+</button></td>
@@ -45,9 +46,9 @@ export default {
         storageZipcode: '',
         storageAddress: ''
       },
+      name:'',
       errorCheck: false,
-      addStorage: false,
-      boxStorageName:''
+      addStorage: false
     }
   },
   methods: {
@@ -102,23 +103,23 @@ export default {
       this.form.storageAddress = ''
     },
     claerBox(){
-      this.box.small=''
-      this.box.medium=''
-      this.box.large=''
+      this.box.small=0
+      this.box.medium=0
+      this.box.large=0
       this.box.storageName=''
     },
     postStorage() {
       this.inputCheck()
       if (this.errorCheck) {
-        axios.post('/api/postStorage', this.form)
+        axios.post('api/postStorage', this.form)
             .then((res) => {
               console.log(this.form)
               console.log(res.data.result)
               if (res.data.result === 'ok') {
                 alert('추가되었습니다')
                 console.log('중복없음')
-                this.boxStorageName = this.form.storageName
-                console.log(this.boxStorageName)
+                this.box.storageName = this.form.storageName
+                this.name = this.form.storageName
                 this.clearInput()
                 this.addStorage = true
 
@@ -130,18 +131,24 @@ export default {
         })
       }
     },
-    inputBox(){
+    postBox(){
       if(!this.addStorage) {
         alert('보관소를 먼저 추가하세요')
-      }else{
-        console.log(this.boxStorageName)
-        this.box.storageName = this.boxStorageName
-        axios.post('/api/postBox',this.box)
+      }else if(this.box.small == 0 &&
+               this.box.medium == 0 &&
+               this.box.large == 0){
+        alert('보관소를 추가하세요')
+      }else {
+        console.log(this.box)
+        axios.post('api/postBox',this.box)
         .then((res)=>{
           console.log(res.data.result)
-          this.boxStorageName =''
           this.claerBox()
           this.addStorage = false
+          this.name=''
+        })
+        .catch(error=>{
+          console.log(error)
         })
       }
     }

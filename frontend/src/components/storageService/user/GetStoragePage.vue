@@ -1,3 +1,4 @@
+<!-- 현재 사용 안함-->
 <template>
   <p>보관소 리스트 페이지</p>
   <div class="storage-get">

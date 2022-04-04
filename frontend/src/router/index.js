@@ -1,5 +1,4 @@
 import {createWebHistory, createRouter} from "vue-router";
-import UserStorageDetail from "@/components/storageService/user/UserStorageDetail.vue";
 
 const routes = [
     {
@@ -20,23 +19,19 @@ const routes = [
     {
         path: "/storageView",
         name:"userStorage",
-        component: ()=> import('@/views/user/UserStorageView.vue'),
-        children: [
-            {
-                path: ':storageCode',
-                name:'detail',
-                component: UserStorageDetail
-            }
-        ]
+        component: ()=> import('@/views/user/UserStorageView.vue')
     },
+    {
+        path:'/storageManager',
+        name:'storageManager',
+        component: ()=> import('@/views/manager/ManagerStorage.vue')
+    }
 
-
-
-];
+]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
-});
+})
 
 export default router;

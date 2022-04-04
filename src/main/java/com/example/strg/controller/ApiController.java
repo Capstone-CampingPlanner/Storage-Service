@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -33,10 +34,7 @@ public class ApiController {
 
     @PostMapping("/postStorage")
     public Result postStorage(@RequestBody Storage storage) {
-
         Optional<Storage> findStrg = storageRepository.findByStorageName(storage.getStorageName());
-
-        System.out.println(storage.getStorageName());
 
         if (!findStrg.isPresent()) {
             storageRepository.save(storage);
@@ -49,7 +47,6 @@ public class ApiController {
 
     @PostMapping("/postBox")
     public Result postBox(@RequestBody Box box){
-
         Storage strg = storageService.findStorageName(box.getStorageName());
 
         String storageBoxName;
@@ -94,38 +91,33 @@ public class ApiController {
     }
 
     @PostMapping("/postManager")
-    public Result postManager(@RequestParam("memberId") String memberId, @RequestParam("storageName") String storageName) {
+    public Result postManager(@RequestBody Manager manager) {
+        Storage storage = storageService.findStorageCode(manager.getStorage());
+        Member member =storageService.findMemberMemberId(manager.getMember());
+        StorageManager storageManager = new StorageManager(member,storage);
+        storageManagerRepository.save(storageManager);
 
-        Optional<Storage> storage = storageRepository.findByStorageName(storageName);
-        Optional<Member> member = memberRepository.findByMemberId(memberId);
-
-//        List<Storage> storageList = storageRepository.findAll();
-//        List<Member> memberList = memberRepository.findAll();
-
-
-        if (!storage.isPresent()) {
-            return new Result("no");
-        } else if (!member.isPresent()) {
-            return new Result("no");
-        } else {
-            // storageName와 일치하는 storageCode 가져오기
-            System.out.println(storage.get().getStorageCode());
-
-            // memberId와 일피하는 memberCode 가져오기
-            System.out.println(member.get().getMemberCode());
-
-            return new Result("ok");
-        }
+        return new Result("ok");
     }
 
-    @PostMapping("/checkManager")
-    public Result checkManager(@RequestBody Member member){
-        Optional<Member> memberId = memberRepository.findByMemberId(member.getMemberId());
+    @GetMapping("/checkManager/{memberId}")
+    public Result checkManager(@PathVariable String memberId) throws NoSuchElementException {
+        try {
+            Optional<Member> member = memberRepository.findByMemberId(memberId);
+            System.out.println(member.get().getMemberId());
+            Optional<StorageManager> storageManager = storageManagerRepository.findByMemberCode(member);
 
-        if (!memberId.isPresent()) {
-            return new Result("overlap");
-        }else{
-            return new Result("ok");
+            if (storageManager.isPresent()) {
+                // 중복
+                return new Result("overlap");
+
+            }else{
+                // 가능
+                return new Result("ok");
+            }
+        }catch (NoSuchElementException n){
+            System.out.println(n);
+            return new Result("no");
         }
     }
 
@@ -137,19 +129,9 @@ public class ApiController {
 
     @GetMapping("/storageView/{storageCode}")
     public List<StorageBox> getStorageDetail(@PathVariable(value = "storageCode") Long storageCode){
-        System.out.println(storageCode);
         Optional<Storage> storage = storageRepository.findById(storageCode);
-        System.out.println("==========");
         List<StorageBox> boxList = storageBoxRepository.findByStorageCode(storage.get());
-        System.out.println("==========");
-        if(boxList.size()!=0){
-            for (int i =0; i <boxList.size();i++ )
-                System.out.println(boxList.get(i).getStorageBoxName());
 
-        }
-        System.out.println("=-=-=-=--=-==-=-=");
-        System.out.println(boxList.get(0).getStorageCode().getStorageName());
-        // System.out.println(storage.get().getStorageBoxCode().get(0).getStorageBoxName());
         return boxList;
     }
 
@@ -160,7 +142,10 @@ public class ApiController {
         return managerList;
     }
 
-
-
+    @GetMapping("/getManager/{storageCode}")
+    public List<StorageManager> getManager(@PathVariable(value = "storageCode") long storageCode){
+        List<StorageManager> managerList = storageService.findByStorageCode(storageCode);
+        return managerList;
+    }
 
 }

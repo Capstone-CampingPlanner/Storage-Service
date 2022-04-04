@@ -8,6 +8,9 @@
           <router-link :to="{name:'home'}">home</router-link>
         </td>
         <td>
+          <router-link :to="{name:'storageManager'}">manager</router-link>
+        </td>
+        <td>
           <router-link :to="{name:'userStorage'}">userStorage</router-link>
         </td>
       </tr>

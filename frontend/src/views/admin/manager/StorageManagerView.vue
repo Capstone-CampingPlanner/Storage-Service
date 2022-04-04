@@ -2,18 +2,18 @@
 <template>
   <div>
     <div>
-      <StorageManagerAdd></StorageManagerAdd>
+      <GetStorageManagerPage></GetStorageManagerPage>
     </div>
   </div>
 </template>
 
 <script>
-import StorageManagerAdd from "@/components/storageService/admin/manager/StorageManagerAdd.vue";
+import GetStorageManagerPage from "@/components/storageService/admin/manager/GetStorageManagerPage.vue";
 
 export default {
   name: "StorageManagerView",
   components:{
-    StorageManagerAdd
+    GetStorageManagerPage
   }
 }
 </script>
