@@ -3,7 +3,7 @@
   <p>보관소 리스트 페이지</p>
   <div class="storage-get">
     <div v-for="(storage,index) in storageList" :key="index">
-      <router-link :to="{name:'detail',params:{storageCode:storage.storageCode}}">
+      <router-link :to="{name:'detail',params:{storageCode:storage.storageCode, memberId:}}">
         <div>
           이름:{{ storage.storageName }}
           주소:{{ storage.storageAddress }}
@@ -23,7 +23,8 @@ export default {
   },
   data() {
     return {
-      storageList: []
+      storageList: [],
+
     }
   },
   methods: {

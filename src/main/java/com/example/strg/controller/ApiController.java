@@ -1,14 +1,12 @@
 package com.example.strg.controller;
 
 import com.example.strg.data.*;
-import com.example.strg.repository.MemberRepository;
-import com.example.strg.repository.StorageBoxRepository;
-import com.example.strg.repository.StorageManagerRepository;
-import com.example.strg.repository.StorageRepository;
+import com.example.strg.repository.*;
 import com.example.strg.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PrivateKey;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -31,6 +29,12 @@ public class ApiController {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private OrderListRepository orderListRepository;
+
+    @Autowired
+    private UseStorageBoxRepository useStorageBoxRepository;
 
     @PostMapping("/postStorage")
     public Result postStorage(@RequestBody Storage storage) {
@@ -100,6 +104,22 @@ public class ApiController {
         return new Result("ok");
     }
 
+    @PostMapping("/payStorageBox")
+    public Result payStorageBox(@RequestBody payStorageBox payStorageBox){
+        Optional<Member> user = memberRepository.findByMemberId(payStorageBox.getUserId());
+        Optional<StorageBox> storageBox = storageBoxRepository.findById(payStorageBox.getStorageBoxCode());
+        System.out.println(user.get().getMemberName());
+        System.out.println(storageBox.get().getStorageBoxName());
+
+        OrderList orderList = new OrderList(user.get());
+        orderListRepository.save(orderList);
+
+        UseStorageBox useStorageBox = new UseStorageBox(storageBox.get(), orderList);
+        useStorageBoxRepository.save(useStorageBox);
+        return new Result("ok");
+
+    }
+
     @GetMapping("/checkManager/{memberId}")
     public Result checkManager(@PathVariable String memberId) throws NoSuchElementException {
         try {
@@ -148,4 +168,16 @@ public class ApiController {
         return managerList;
     }
 
+
+//    로그인 없이 사용자 지정 할 때 사용
+    @GetMapping("memberCheck/{memberId}")
+    public Result getMemberId(@PathVariable(value = "memberId")String memberId){
+        Optional<Member> member = memberRepository.findByMemberId(memberId);
+
+        if(member.isPresent()){
+            return new Result("ok");
+        }else{
+            return new Result("no");
+        }
+    }
 }

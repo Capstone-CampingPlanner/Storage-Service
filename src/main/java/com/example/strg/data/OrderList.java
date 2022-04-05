@@ -20,7 +20,12 @@ public class OrderList {
     @Column
     private String orderType;
 
+
     public OrderList() {
+    }
+
+    public OrderList(Member memberCode) {
+        this.memberCode = memberCode;
     }
 
     public OrderList(long orderCode, Member memberCode, int orderPrice, String orderType) {

@@ -1,4 +1,5 @@
 import {createWebHistory, createRouter} from "vue-router";
+import UserStorageDetail from "@/components/storageService/user/UserStorageDetail.vue";
 
 const routes = [
     {
@@ -20,6 +21,11 @@ const routes = [
         path: "/storageView",
         name:"userStorage",
         component: ()=> import('@/views/user/UserStorageView.vue')
+    },
+    {
+        path: "/storageView/:storageCode",
+        name:"userStorageDetail",
+        component: UserStorageDetail
     },
     {
         path:'/storageManager',

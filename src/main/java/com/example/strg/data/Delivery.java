@@ -8,69 +8,69 @@ public class Delivery {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long delivery_code;
+    private long deliveryCode;
 
     @OneToOne
-    @JoinColumn(name = "order_code")
-    private OrderList order_code;
+    @JoinColumn(name = "orderCode")
+    private OrderList orderCode;
 
     @Column
-    private String delivery_name;
+    private String deliveryName;
 
     @Column
-    private String delivery_ph;
+    private String deliveryPh;
 
     @Column
-    private String delivery_state;
+    private String deliveryState;
 
     public Delivery() {
     }
 
-    public Delivery(long delivery_code, OrderList order_code, String delivery_name, String delivery_ph, String delivery_state) {
-        this.delivery_code = delivery_code;
-        this.order_code = order_code;
-        this.delivery_name = delivery_name;
-        this.delivery_ph = delivery_ph;
-        this.delivery_state = delivery_state;
+    public Delivery(long deliveryCode, OrderList orderCode, String deliveryName, String deliveryPh, String deliveryState) {
+        this.deliveryCode = deliveryCode;
+        this.orderCode = orderCode;
+        this.deliveryName = deliveryName;
+        this.deliveryPh = deliveryPh;
+        this.deliveryState = deliveryState;
     }
 
-    public long getDelivery_code() {
-        return delivery_code;
+    public long getDeliveryCode() {
+        return deliveryCode;
     }
 
-    public void setDelivery_code(long delivery_code) {
-        this.delivery_code = delivery_code;
+    public void setDeliveryCode(long deliveryCode) {
+        this.deliveryCode = deliveryCode;
     }
 
-    public OrderList getOrder_code() {
-        return order_code;
+    public OrderList getOrderCode() {
+        return orderCode;
     }
 
-    public void setOrder_code(OrderList order_code) {
-        this.order_code = order_code;
+    public void setOrderCode(OrderList orderCode) {
+        this.orderCode = orderCode;
     }
 
-    public String getDelivery_name() {
-        return delivery_name;
+    public String getDeliveryName() {
+        return deliveryName;
     }
 
-    public void setDelivery_name(String delivery_name) {
-        this.delivery_name = delivery_name;
+    public void setDeliveryName(String deliveryName) {
+        this.deliveryName = deliveryName;
     }
 
-    public String getDelivery_ph() {
-        return delivery_ph;
+    public String getDeliveryPh() {
+        return deliveryPh;
     }
 
-    public void setDelivery_ph(String delivery_ph) {
-        this.delivery_ph = delivery_ph;
+    public void setDeliveryPh(String deliveryPh) {
+        this.deliveryPh = deliveryPh;
     }
 
-    public String getDelivery_state() {
-        return delivery_state;
+    public String getDeliveryState() {
+        return deliveryState;
     }
 
-    public void setDelivery_state(String delivery_state) {
-        this.delivery_state = delivery_state;
+    public void setDeliveryState(String deliveryState) {
+        this.deliveryState = deliveryState;
     }
 }

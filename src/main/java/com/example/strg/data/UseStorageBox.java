@@ -21,6 +21,11 @@ public class UseStorageBox {
     public UseStorageBox() {
     }
 
+    public UseStorageBox(StorageBox storageBoxCode, OrderList orderCode) {
+        this.storageBoxCode = storageBoxCode;
+        this.orderCode = orderCode;
+    }
+
     public UseStorageBox(long useStorageBoxCode, StorageBox storageBoxCode, OrderList orderCode) {
         this.useStorageBoxCode = useStorageBoxCode;
         this.storageBoxCode = storageBoxCode;
